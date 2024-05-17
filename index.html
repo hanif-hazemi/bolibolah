@@ -7,21 +7,27 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Grocery Tracker</h1>
-    <form id="grocery-form">
-        <label for="product-name">Product Name:</label>
-        <input type="text" id="product-name" name="entry.1787927891" required><br>
-        
-        <label for="price">Price:</label>
-        <input type="number" id="price" name="entry.1469640236" required><br>
-        
-        <label for="custom-time">Custom Time (optional):</label>
-        <input type="datetime-local" id="custom-time" name="entry.266770144"><br>
-        
-        <button type="submit">Submit</button>
-    </form>
+    <header>
+        <h1>Grocery Tracker</h1>
+        <a href="analysis.html" class="view-analysis-button">View Analysis</a>
+    </header>
 
-    <a href="analysis.html">View Analysis</a>
+    <main>
+        <!-- Your form content goes here -->
+        <!-- Example: -->
+        <form id="grocery-form">
+            <label for="product-name">Product Name:</label>
+            <input type="text" id="product-name" name="entry.1787927891" required><br>
+            
+            <label for="price">Price:</label>
+            <input type="number" id="price" name="entry.1469640236" required><br>
+            
+            <label for="custom-time">Custom Time (optional):</label>
+            <input type="datetime-local" id="custom-time" name="entry.266770144"><br>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </main>
 
     <script src="script.js"></script>
 </body>
