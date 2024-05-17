@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grocery Data Analysis</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Grocery Data Analysis</h1>
+    <canvas id="priceChart" width="400" height="200"></canvas>
+    
+    <script>
+        const apiKey = 'AIzaSyAXMh9gZ7eY-BA247IVi2VExDvZX87cygY';
+        const spreadsheetId = '1Uqf5YcYRKNm_bqVIhiy-yst-x6OS_uEWiKj3GMKJFsA';
+        const range = 'Sheet1!A:C';  // Adjust the range as necessary
+
+        async function fetchData() {
+            const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=${apiKey}`);
+            const data = await response.json();
+            return data.values;
+        }
+
+        function createChart(data) {
+            const ctx = document.getElementById('priceChart').getContext('2d');
+            const labels = data.map(row => row[0]);  // Assuming product names are in the first column
+            const prices = data.map(row => parseFloat(row[1]));  // Assuming prices are in the second column
+            
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Price',
+                        data: prices,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        fetchData().then(data => {
+            createChart(data);
+        }).catch(error => {
+            console.error('Error fetching data:', error);
+        });
+    </script>
+</body>
+</html>
