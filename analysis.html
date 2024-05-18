@@ -9,72 +9,17 @@
 </head>
 <body class="dark-mode">
     <header>
-        <button class="back-button" onclick="goBack()">Back</button>
         <h1>Grocery Data Analysis</h1>
+        <button class="back-button" onclick="goBack()">Back</button>
     </header>
-    <canvas id="priceChart" width="400" height="200"></canvas>
-    
-    <script>
-        const apiKey = 'AIzaSyAXMh9gZ7eY-BA247IVi2VExDvZX87cygY';
-        const spreadsheetId = '1Uqf5YcYRKNm_bqVIhiy-yst-x6OS_uEWiKj3GMKJFsA';
-        const range = 'Form Responses 1!A:D';  // Adjust the range as necessary
-
-        async function fetchData() {
-            try {
-                const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=${apiKey}`);
-                const data = await response.json();
-                if (response.ok) {
-                    return data.values;
-                } else {
-                    console.error('Error fetching data:', data);
-                    return [];
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                return [];
-            }
-        }
-
-        function createChart(data) {
-            const ctx = document.getElementById('priceChart').getContext('2d');
-            const labels = data.slice(1).map(row => row[1]);  // Skip header and map product names from second column
-            const prices = data.slice(1).map(row => parseFloat(row[2]));  // Skip header and map prices from third column
-            
-            new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Price',
-                        data: prices,
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-        }
-
-        fetchData().then(data => {
-            if (data.length > 0) {
-                createChart(data);
-            } else {
-                alert('No data available or error fetching data.');
-            }
-        }).catch(error => {
-            console.error('Error fetching data:', error);
-        });
-
-        function goBack() {
-            window.history.back();
-        }
-    </script>
+    <main>
+        <!-- Removed the display of the first product -->
+        <div class="chart-container">
+            <label for="month-select">Select Month:</label>
+            <select id="month-select"></select>
+            <canvas id="priceChart" width="400" height="200"></canvas>
+        </div>
+    </main>
+    <script src="script.js"></script>
 </body>
 </html>

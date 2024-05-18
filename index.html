@@ -6,15 +6,12 @@
     <title>Grocery Tracker</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="dark-mode">
     <header>
         <h1>Grocery Tracker</h1>
-        <a href="analysis.html" class="view-analysis-button">View Analysis</a>
+        <button class="view-analysis-button" onclick="location.href='analysis.html'">View Analysis</button>
     </header>
-
     <main>
-        <!-- Your form content goes here -->
-        <!-- Example: -->
         <form id="grocery-form">
             <label for="product-name">Product Name:</label>
             <input type="text" id="product-name" name="entry.1787927891" required><br>
@@ -28,7 +25,31 @@
             <button type="submit">Submit</button>
         </form>
     </main>
-
     <script src="script.js"></script>
+    <script>
+        document.getElementById('grocery-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const formData = new FormData(form);
+            
+            const data = new URLSearchParams();
+            for (const pair of formData) {
+                data.append(pair[0], pair[1]);
+            }
+
+            fetch('https://docs.google.com/forms/u/0/d/e/1FAIpQLSfN_Hs1QADp1UkGit6ltc-e__OxAcg1dV8Wqo2grLMaGqt_IQ/formResponse', {
+                method: 'POST',
+                mode: 'no-cors',
+                body: data
+            }).then(() => {
+                alert('Form submitted successfully!');
+                form.reset();
+            }).catch((error) => {
+                console.error('Error:', error);
+                alert('Error submitting form');
+            });
+        });
+    </script>
 </body>
 </html>

@@ -12,7 +12,7 @@ header {
     background-color: #0d6efd;
     padding: 20px;
     display: flex;
-    justify-content: space-between; /* Align items to the ends of the header */
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -26,10 +26,10 @@ h1 {
 .view-analysis-button {
     background-color: #0d6efd;
     color: #fff;
-    padding: 10px 20px; /* Smaller size */
+    padding: 10px 20px;
     border: none;
     border-radius: 8px;
-    font-size: 16px; /* Smaller font size */
+    font-size: 16px;
     text-decoration: none;
     transition: background-color 0.3s;
 }
@@ -50,9 +50,9 @@ form {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: inline-block;
-    width: 95%; /* Adjusted width */
-    max-width: 500px; /* Maximum width */
-    margin-bottom: 20px; /* Added margin */
+    width: 95%;
+    max-width: 500px;
+    margin-bottom: 20px;
 }
 
 form label {
@@ -87,12 +87,32 @@ form button[type="submit"] {
     transition: background-color 0.3s;
 }
 
-form button[type="submit"]:hover {
-    background-color: #0056b3;
-}
-
 canvas {
     background-color: #1e1e1e;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+select {
+    width: 100%;
+    padding: 8px; /* Adjusted padding */
+    margin-bottom: 10px;
+    font-size: 14px; /* Adjusted font size */
+    border: 2px solid #0d6efd;
+    border-radius: 8px;
+    background-color: #333;
+    color: #fff;
+}
+
+option {
+    background-color: #1e1e1e;
+    color: #fff;
+    font-size: 16px;
+}
+
+/* Adjust the size of the chart */
+#priceChart {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
 }
